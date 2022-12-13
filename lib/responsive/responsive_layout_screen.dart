@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:instagram0/utils/dimension.dart';
+
+class ResponsiveLayout extends StatelessWidget {
+  final Widget webScreenLayout;
+  final Widget mobileScreenLayout;
+  const ResponsiveLayout(
+      {super.key,
+      required this.mobileScreenLayout,
+      required this.webScreenLayout});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth > webScreen) {
+          //webscreen
+          return webScreenLayout;
+        }
+        //mobilescreen
+        return mobileScreenLayout;
+      },
+    );
+  }
+}
