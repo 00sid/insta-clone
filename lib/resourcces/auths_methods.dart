@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram0/resourcces/storage_methods.dart';
 
-class AuthMethos {
+class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   //sign up user
@@ -45,7 +45,24 @@ class AuthMethos {
       if (err.code == 'invalid-email') {
         res = 'The email is badly formatted.';
       } else if (err.code == 'weak-password') {
-        res = 'Ypur password should be at least 6 character.';
+        res = 'Your password should be at least 6 character.';
+      }
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
+  Future<String> loginUser(
+      {required String email, required String password}) async {
+    String res = 'Some error occured';
+    try {
+      if (email.isNotEmpty || password.isNotEmpty) {
+        await _auth.signInWithEmailAndPassword(
+            email: email, password: password);
+        res = 'success';
+      } else {
+        res = 'Please enter all the fields';
       }
     } catch (err) {
       res = err.toString();
