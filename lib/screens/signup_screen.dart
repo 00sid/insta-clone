@@ -85,8 +85,8 @@ class _SignupScreenState extends State<SignupScreen> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          child: ListView(
+            //  crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(
                 child: Container(),
@@ -105,9 +105,11 @@ class _SignupScreenState extends State<SignupScreen> {
               Stack(
                 children: [
                   _image != null
-                      ? CircleAvatar(
-                          radius: 64,
-                          backgroundImage: MemoryImage(_image!),
+                      ? Center(
+                          child: CircleAvatar(
+                            radius: 64,
+                            backgroundImage: MemoryImage(_image!),
+                          ),
                         )
                       : const CircleAvatar(
                           radius: 64,
